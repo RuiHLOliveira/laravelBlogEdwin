@@ -1,0 +1,196 @@
+/* geral */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i&display=swap');
+html, body, div ,h1, h2, h3 {
+    padding: 0px;
+    margin: 0px;
+}
+html {
+    --textColor: #000000;
+    font-family: 'Montserrat';
+}
+
+
+/* auxiliares */
+.border,
+.border > * {
+    border: 1px solid #00000055;
+}
+.centerText {
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+}
+/* auxiliares end */
+
+
+/* flexbox general */
+.flexColInside {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.flexColInside > * {
+    flex-grow: 1; /* se cresce */
+    flex-shrink: 1; /* se diminui */
+    flex-basis: auto; /* tamanho padrão */
+}
+.flexRowInside {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.flexRowInside > * {
+    flex-grow: 1; /* se cresce */
+    flex-shrink: 1; /* se diminui */
+    flex-basis: auto; /* tamanho padrão */
+}
+/* flexbox general end */
+
+
+/* header */
+header.systemName {
+    font-size: 2em;
+}
+header.systemName a {
+    text-decoration: none;
+    color: var(--textColor);
+}
+/* header end */
+
+
+/* nav */
+nav {
+    padding: 10px;
+    flex-grow: 0 !important;
+    flex-shrink: 1 !important;
+    flex-basis: 200px !important;
+    border-right: 1px solid #00000055;
+}
+nav > a, nav > span {
+    padding: 10px;
+    background-color: #ededee;
+    margin: 0px 5px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+}
+nav > span {
+    font-weight: lighter;
+    font-style: italic;
+    padding-left: 40px;
+}
+nav > a {
+    color: var(--textColor);
+    text-decoration: none;
+}
+nav > a:hover {
+    color: var(--textColor);
+    text-decoration: none;
+    font-weight: bold;
+}
+/* nav end */
+
+
+/* body content */
+.content{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    padding: 10px;
+}
+/* body content end */
+
+
+/* divs caixas */
+.maxWidth800 {
+    max-width: 800px;
+}
+/* divs caixas end */
+
+
+/* tables */
+table.tableBorder,
+table.tableBorder th,
+table.tableBorder td {
+    border-bottom: 1px solid #00000055;
+    border-collapse: collapse;
+}
+table.tableCell td {
+    padding: 10px 5px;
+}
+table.fullWidthTable {
+    width: 100%;
+}
+/* tables end */
+
+
+/* forms */
+label {
+    margin: 15px 0 0 0;
+    cursor: text;
+}
+input, select {
+    border: 1px solid #00000055;
+    padding: 10px 5px;
+    margin: 5px 0px;
+}
+input {
+    font-size: 1em;
+    font-family: 'Montserrat';
+}
+input:focus {
+    box-shadow: 0px 0px 1px 2px #55aaff;
+    transition-property: box-shadow;
+    transition-duration: 0.1s;
+}
+input[type="submit"] {
+    cursor: pointer;
+    margin: 10px 0;
+}
+input[type="file"] {
+    border: 0px;
+    padding: 0px;
+}
+/* forms end */
+
+
+/* cores */
+.box {
+    margin: 2px 0px;
+    padding: 5px;
+}
+.boxPrimary {
+    color: #004085;
+    background-color: #cce5ff;
+    border: 1px solid #b8daff;
+}
+.boxSecondary {
+    color: #383d41;
+    background-color: #e2e3e5;
+    border: 1px solid #d6d8db;
+}
+.boxSuccess {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+.boxDanger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+.boxWarning {
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+.boxInfo {
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    background-color: #d1ecf1;
+}
+.boxLight {
+    color: #818182;
+    background-color: #fefefe;
+    border: 1px solid #fdfdfe;
+}
+/* cores end*/
