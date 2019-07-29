@@ -1,14 +1,77 @@
 /* geral */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i&display=swap');
-html, body, div ,h1, h2, h3 {
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
+html, body, div {
     padding: 0px;
     margin: 0px;
 }
 html {
-    --textColor: #000000;
-    font-family: 'Montserrat';
+    font-family: var(--defaultFont);
+    color: var(--textColor);
 }
 
+/* var lib */
+html {
+    --defaultFont: 'Roboto';
+    --textColor: #45596e;
+    --navText: #F2F5F7;
+    --navBackgorund: #2A3F54;
+    --topbarBackground: #EDEDED;
+    --topbarColor: #51535E;
+}
+/* end var lib */
+
+
+/* STRUCTURAL CLASSES  */
+.systemContainer1 {
+    /* flex son */
+    flex-grow: 1;
+
+    /* flex dad */
+    display: flex;
+    flex-direction: row;
+
+    /* common */
+    height: 100vh;
+}
+.leftBarContainer {
+    /* flex son */
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 230px;
+
+    /* flex dad */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    /* common */
+    color: var(--navColor);
+    background-color: var(--navBackgorund);
+    padding: 20px 20px;
+}
+.navFlex {
+    /* flex son */
+    
+    /* flex dad */
+    display: flex;
+    flex-direction: column;
+
+    /* common */
+}
+.rightPageContainer {
+    /* flex son */
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    /* flex dad */
+
+    /* common */
+    color: var(--textColor);
+}
+.content {
+    padding: 0 20px;
+}
 
 /* auxiliares */
 .border,
@@ -21,83 +84,72 @@ html {
 .bold {
     font-weight: bold;
 }
+a.link {
+    color: inherit;
+    text-decoration: none;
+}
+a.link:visited {
+    color: inherit;
+}
+a.link:hover {
+    filter: brightness(70%);
+}
 /* auxiliares end */
 
 
-/* flexbox general */
-.flexColInside {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-.flexColInside > * {
-    flex-grow: 1; /* se cresce */
-    flex-shrink: 1; /* se diminui */
-    flex-basis: auto; /* tamanho padrão */
-}
-.flexRowInside {
-    display: flex;
-    flex-flow: column nowrap;
-}
-.flexRowInside > * {
-    flex-grow: 1; /* se cresce */
-    flex-shrink: 1; /* se diminui */
-    flex-basis: auto; /* tamanho padrão */
-}
-/* flexbox general end */
-
-
 /* header */
-header.systemName {
+header {
+    background-color: var(--navBackgorund);
+    color: var(--navText);
     font-size: 2em;
-}
-header.systemName a {
-    text-decoration: none;
-    color: var(--textColor);
 }
 /* header end */
 
 
 /* nav */
 nav {
-    padding: 10px;
-    flex-grow: 0 !important;
-    flex-shrink: 1 !important;
-    flex-basis: 200px !important;
-    border-right: 1px solid #00000055;
+    background-color: var(--navBackgorund);
+    color: var(--navText);
 }
-nav > a, nav > span {
-    padding: 10px;
-    background-color: #ededee;
-    margin: 0px 5px;
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
+nav > span,
+nav > a {
+    padding: 8px 0px;
 }
 nav > span {
-    font-weight: lighter;
-    font-style: italic;
-    padding-left: 40px;
-}
-nav > a {
-    color: var(--textColor);
-    text-decoration: none;
-}
-nav > a:hover {
-    color: var(--textColor);
-    text-decoration: none;
+    text-transform: uppercase;
     font-weight: bold;
+    padding-top: 30px;
 }
 /* nav end */
 
 
-/* body content */
-.content{
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    padding: 10px;
+/* topbar */
+.topbar {
+    background-color: var(--topbarBackground);
+    color: var(--topbarColor);
+    padding: 20px 3%;
+    text-align: right;
 }
-/* body content end */
+.topbar .welcomeName {
+    margin-right: 20px;
+}
+.topbar > a {
+    margin-right: 20px;
+}
+/* end topbar */
+
+
+/* internal page styles */
+.pageTitle {
+    /* flex son */
+
+    /* flex dad */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* end internal page styles */
 
 
 /* divs caixas */
@@ -124,39 +176,113 @@ table.fullWidthTable {
 
 
 /* forms */
-label {
-    margin: 15px 0 0 0;
+.formContainer {
+    /* flex son */
+
+    /* flex dad */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.formFlex {
+    /* flex son */
+    flex-basis: 800px;
+    flex-shrink: 1;
+    flex-grow: 0;
+
+    /* flex dad */
+    display: flex;
+    flex-direction: column;
+}
+label.formLabel {
+    margin-top: 8px;
+    margin-bottom: 5px;
     cursor: text;
 }
-input, select {
-    border: 1px solid #00000055;
-    padding: 10px 5px;
-    margin: 5px 0px;
+input.formInput,
+select.formInput,
+textarea.formInput {
+    margin-bottom: 8px;
+    padding: 10px 10px;
 }
-input {
+input.formInput,
+select.formInput,
+textarea.formInput {
     font-size: 1em;
-    font-family: 'Montserrat';
+    border: 1px solid #00000055;
+    font-family: var(--defaultFont);
+    min-width: 80px;
 }
-input:focus {
+input.formInput:focus,
+select.formInput:focus,
+textarea.formInput:focus {
     box-shadow: 0px 0px 1px 2px #55aaff;
     transition-property: box-shadow;
-    transition-duration: 0.1s;
+    transition-duration: 0.3s;
 }
 input[type="submit"] {
     cursor: pointer;
-    margin: 10px 0;
-}
-input[type="file"] {
-    border: 0px;
-    padding: 0px;
 }
 /* forms end */
 
 
-/* cores */
+/* buttons cores */
+.btn {
+    min-width: 80px;
+    font-family: var(--defaultFont);
+    font-size: 1em;
+    display: inline-block;
+    margin: 8px 2px;
+    padding: 10px 10px;
+    border: 0px;
+    cursor: pointer;
+}
+a.btn {
+    text-align: center;
+    text-decoration: none;
+}
+.btn:hover {
+    filter: brightness(95%);
+}
+.btnPrimary {
+    color: #ffffff;
+    background-color: #007bff;
+}
+.btnSecondary {
+    color: #ffffff;
+    background-color: #6c757d;
+}
+.btnSuccess {
+    color: #ffffff;
+    background-color: #28a745;
+}
+.btnDanger {
+    color: #ffffff;
+    background-color: #dc3545;
+}
+.btnWarning {
+    color: #ffffff;
+    background-color: #ffc107;
+}
+.btnInfo {
+    color: #ffffff;
+    background-color: #17a2b8;
+}
+.btnLight {
+    color: #555555;
+    background-color: #f8f9fa;
+}
+.btnDark {
+    color: #ffffff;
+    background-color: #343a40;
+}
+/* end buttons cores */
+
+
+/* box cores */
 .box {
-    margin: 2px 0px;
-    padding: 5px;
+    margin: 8px 0px;
+    padding: 10px;
 }
 .boxPrimary {
     color: #004085;

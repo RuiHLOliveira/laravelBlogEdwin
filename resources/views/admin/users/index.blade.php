@@ -2,32 +2,51 @@
 
 @section('content')
 
-<div class="flexRow">
-    <h1>meus users</h1>
+<style>
+.profilePic {
+    border-radius: 15%;
+    width: 40px;
+    height: 40px;
+}
+</style>
+
+<div class="pageTitle">
+    <h1>All Users</h1>
 </div>
+
 <div class="flexRow">
     <table class="tableBorder fullWidthTable tableCell centerText">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Profile Pic</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Active</th>
-                <th>Created at</th>
-                <th>Modified at</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td>{{$user->id}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td>{{$user->role->name}}</td>
-                <td>{{$user->is_active == 1 ? 'active' : 'not active'}}</td>
-                <td>{{$user->created_at->diffForHumans()}}</td>
-                <td>{{$user->updated_at->diffForHumans()}}</td>
+                <td>
+                    @if ($user->photo)
+                        <img class="profilePic" src="{{ asset('images').'/'.$user->photo->file }}">
+                    @else
+                        <img class="profilePic" src="{{ asset('images/stdavatar.png') }}">
+                    @endif
+                </td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>
+                    @if($user->role)
+                        {{ $user->role->name }}
+                    @else
+                        no role
+                    @endif
+                </td>
+                <td>{{ $user->is_active == 1 ? 'active' : 'not active' }}</td>
+                <td><a class="link" href="{{ route('users.edit',['user_id' => $user->id]) }}"><i class="far fa-edit"></i></a></td>
             </tr>
             @endforeach
         </tbody>

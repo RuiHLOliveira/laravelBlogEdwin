@@ -2,73 +2,82 @@
 
 @section('content')
 
-<div class="flexRowInside centerText">
-    <h1>create users</h1>
-</div>
+<style>
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+}
+</style>
+<div class="pageContainer">
 
-<div class="flexColInside">
-    {{-- users.store --}}
-    <form class="flexRowInside maxWidth800" method="POST" action="{{route('users.store')}}">
-        @csrf
+    <div class="pageTitle">
+        <h1>create users</h1>
+    </div>
 
-        <label class="bold" for="name">name</label>
-        <input type="text" name="name" id="">
-        @error('name')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+    <div class="formContainer">
+        {{-- users.store --}}
+        <form class="formFlex" enctype="multipart/form-data" method="POST" action="{{route('users.store')}}">
+            @csrf
 
-        <label class="bold" for="email">email</label>
-        <input type="text" name="email" id="">
-        @error('email')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+            <label class="formLabel bold" for="name">name</label>
+            <input class="formInput" type="text" name="name" id="" required>
+            @error('name')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
 
-        <label class="bold" for="role">role</label>
-        <select name="role" id="">
-            <option selected disabled value="">Choose one</option>
-            @foreach ($roles as $role)
-                <option value="{{$role->name}}">{{$role->name}}</option>
-            @endforeach
-        </select>
-        @error('role')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+            <label class="formLabel bold" for="email">email</label>
+            <input class="formInput" type="text" name="email" id="" required>
+            @error('email')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
 
-        <label class="bold" for="status">status</label>
-        <select name="status" id="">
-            <option value="active">active</option>
-            <option value="notactive">notactive</option>
-        </select>
-        @error('status')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+            <label class="formLabel bold" for="role">role</label>
+            <select class="formInput" name="role" id="" required>
+                <option selected disabled value="">Choose one</option>
+                @foreach ($roles as $role)
+                    <option value="{{$role->name}}">{{$role->name}}</option>
+                @endforeach
+            </select>
+            @error('role')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
 
-        <label class="bold" for="pass">pass</label>
-        <input type="password" name="pass" id="">
-        @error('pass')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+            <label class="formLabel bold" for="status">status</label>
+            <select class="formInput" name="status" id="" required>
+                <option selected value="active">active</option>
+                <option value="notactive">notactive</option>
+            </select>
+            @error('status')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
 
-        <label class="bold" for="photo">photo</label>
-        <input type="file" name="photo" id="">
-        @error('photo')
-            <div class="box boxDanger">
-                {{ $message }}
-            </div>
-        @enderror
+            <label class="formLabel bold" for="pass">pass</label>
+            <input class="formInput" type="password" name="pass" id="" required>
+            @error('pass')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
 
-        <input class="boxPrimary" type="submit" value="Create">
-    </form>
+            <label class="formLabel bold" for="photo">photo</label>
+            <input type="file" enctype="multipart/form-data" accept=".jpg, .jpeg, .png" name="photo" id="" >
+            @error('photo')
+                <div class="box boxDanger">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            <input class="btn btnSuccess" type="submit" value="Create">
+        </form>
+    </div>
 </div>
 
 @endsection

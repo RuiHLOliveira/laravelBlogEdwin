@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Category extends Model
 {
     protected $fillable = [
         'name'
     ];
+
+    public function post() {
+        return $this->hasMany('App\Post');
+    }
 }
