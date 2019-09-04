@@ -26,7 +26,7 @@
 
         <div class="leftBarContainer">
             
-            <a class="link" href=""><header class="systemName">sysname</header></a>
+            <header class="systemName"><a class="link" href="">sysname</a></header>
 
             {{-- navbar --}}
             <nav class="navFlex">
@@ -40,17 +40,18 @@
                     @endif
                 @endguest
                 
-                <span><i class="fas fa-users"></i>Users</span>
-                <a class="link" href="{{route('users.index')}}">All Users</a>
-                <a class="link" href="{{route('users.create')}}">Create User</a>
+                <a class="link" href="{{ route('admin.users.index') }}">
+                    <i class="fas fa-fw fa-users"></i> Users
+                </a>
 
-                <span><i class="fas fa-file-alt"></i>Posts</span>
-                <a class="link" href="{{route('posts.index')}}">All Posts</a>
-                <a class="link" href="{{route('posts.create')}}">Create Post</a>
-
-                <span><i class="fas fa-address-card"></i>Categories</span>
-                <a class="link" href="">All Categories</a>
-                <a class="link" href="">Create Categoriy</a>
+                <a class="link" href="{{ route('admin.posts.index') }}">
+                    <i class="fas fa-fw fa-file-alt"></i> Posts
+                </a>
+                
+                <a class="link" href="{{ route('admin.categories.index') }}">
+                    <i class="fas fa-fw fa-address-card"></i> Categories
+                </a>
+                {{-- <a class="link" href="{{ route('admin.categories.create') }}">Create Categoriy</a> --}}
             </nav>
             {{-- navbar end --}}
 
@@ -61,9 +62,15 @@
             <div class="topbar">
                 @auth
                     <span class="welcomeName">Welcome, {{Auth::user()->name}}</span>
-                    <a class="link" href="{{ url('/auth/logout') }}">Logout</a>
+                    <a class="link" href="{{ url('/logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a>
                     <a class="link" href="{{ url('/admin/profile') }}/{{auth()->user()->id}}">Profile</a>
                     <a class="link" href="">Settings</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @endauth
             </div>
                 

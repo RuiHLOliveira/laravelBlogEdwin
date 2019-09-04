@@ -8,14 +8,19 @@
     width: 40px;
     height: 40px;
 }
+
 </style>
 
 <div class="pageTitle">
     <h1>All Users</h1>
 </div>
 
-<div class="flexRow">
-    <table class="tableBorder fullWidthTable tableCell centerText">
+<div class="topLinks">
+    <a class="btn btnPrimary" href="{{ route('admin.users.create') }}">Create User</a>
+</div>
+
+<div>
+    <table class="tableBorder fullWidthTable tableCell noCenterThead">
         <thead>
             <tr>
                 <th>Profile Pic</th>
@@ -46,7 +51,7 @@
                     @endif
                 </td>
                 <td>{{ $user->is_active == 1 ? 'active' : 'not active' }}</td>
-                <td><a class="link" href="{{ route('users.edit',['user_id' => $user->id]) }}"><i class="far fa-edit"></i></a></td>
+                <td><a class="link" href="{{ route('admin.users.edit',['user_id' => $user->id]) }}"><i class="far fa-edit"></i></a></td>
             </tr>
             @endforeach
         </tbody>

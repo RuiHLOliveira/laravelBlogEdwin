@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\User;
 use App\Category;
 
-class PostsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $categories = Category::all();
-        return view('blog.posts.index', compact(
-            'posts',
-            'categories'
-        ));
+        //
     }
 
     /**
@@ -30,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -52,12 +47,12 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $user = User::find($id);
         $categories = Category::all();
-        return view('blog.posts.show', compact(
-            'post',
+        return view('blog.users.show',compact([
+            'user',
             'categories'
-        ));
+        ]));
     }
 
     /**

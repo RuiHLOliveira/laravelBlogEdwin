@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 use App\Category;
 
-class PostsController extends Controller
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
         $categories = Category::all();
-        return view('blog.posts.index', compact(
-            'posts',
-            'categories'
-        ));
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -30,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.categories.create');
     }
 
     /**
@@ -41,7 +36,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        $category = Category::create($validatedData);
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -52,12 +51,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        $categories = Category::all();
-        return view('blog.posts.show', compact(
-            'post',
-            'categories'
-        ));
+        //
     }
 
     /**
@@ -68,7 +62,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view ('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -80,7 +75,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        $category->update($validatedData);
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -91,6 +91,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect(route('admin.categories.index'));
     }
 }

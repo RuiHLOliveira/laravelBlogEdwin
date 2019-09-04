@@ -44,7 +44,7 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
@@ -63,7 +63,7 @@ class AdminUsersController extends Controller
             $validatedData['photo_id'] = $photo->id;
         }
         $result = User::create($validatedData);
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**

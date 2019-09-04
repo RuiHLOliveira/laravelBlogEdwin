@@ -41,14 +41,13 @@ class AdminPostsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'category_id' => 'required|max:255',
-            'title' => 'required|max:255',
-            'body' => 'required',
+            'category_id' => 'required',
+            'title' => 'required|max:65535',
+            'body' => 'required|max:65535',
             'photo' => 'mimes:jpeg,png,jpg'
         ]);
         $user = Auth::user();
         $validatedData['user_id'] = $user->id;
-
         if(isset($validatedData['photo'])) {
             $filename = date('Y-m-d')."_".$validatedData['photo']->getClientOriginalName();
             $result = $validatedData['photo']->move('images',$filename);
@@ -56,7 +55,7 @@ class AdminPostsController extends Controller
             $validatedData['photo_id'] = $photo->id;
         }
         Post::create($validatedData);
-        return redirect()->route('posts.index');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -78,7 +77,9 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('categories','post'));
     }
 
     /**
@@ -90,7 +91,22 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $validatedData = $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|max:65535',
+            'body' => 'required|max:65535',
+            'photo' => 'mimes:jpeg,png,jpg'
+        ]);
+        if(isset($validatedData['photo'])) {
+            $filename = date('Y-m-d')."_".$validatedData['photo']->getClientOriginalName();
+            $result = $validatedData['photo']->move('images',$filename);
+            $photo = Photo::create(['file' => $filename]);
+            $validatedData['photo_id'] = $photo->id;
+        }
+        $result = $post->update($validatedData);
+        // return [$request,$validatedData,$result];
+        return redirect(route('admin.posts.index'));
     }
 
     /**
@@ -101,6 +117,11 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        if($post->photo) {
+            unlink(public_path('images/'.$post->photo->file));
+        }
+        $post->delete();
+        return redirect(route('admin.posts.index'));
     }
 }

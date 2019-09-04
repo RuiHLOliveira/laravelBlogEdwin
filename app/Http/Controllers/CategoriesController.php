@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
-use App\Category;
 
-class PostsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $categories = Category::all();
-        return view('blog.posts.index', compact(
-            'posts',
-            'categories'
-        ));
+        //
     }
 
     /**
@@ -30,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -52,12 +47,15 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $category = Category::find($id);
         $categories = Category::all();
-        return view('blog.posts.show', compact(
-            'post',
-            'categories'
-        ));
+        $posts = Post::where('category_id',$id)->get();
+        // dd($posts);
+        return view('blog.categories.show',compact([
+            'category',
+            'categories',
+            'posts'
+        ]));
     }
 
     /**

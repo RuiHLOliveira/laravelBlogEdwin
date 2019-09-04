@@ -39,7 +39,7 @@ function toggleChangePassword () {
     </div>
 
     <div class="formContainer">
-        <form class="formFlex" action="{{route('users.update',[$user->id])}}" method="POST" enctype="multipart/form-data">
+        <form class="formFlex" action="{{route('admin.users.update',[$user->id])}}" method="POST" enctype="multipart/form-data">
             {{-- users.store --}}
             @csrf
             @method('PUT')
@@ -123,13 +123,13 @@ function toggleChangePassword () {
                 </div>
             @enderror
             <div class="flexColInside" style="justify-content: left;">
-                <input class="flexGrow0 btn btnPrimary" type="submit" value="Back">
+                <a class="flexGrow0 btn btnPrimary" href="{{ route('admin.users.index') }}">Back</a>
                 <input class="flexGrow0 btn btnSuccess" type="submit" value="Update">
                 <input class="flexGrow0 btn btnDanger" type="submit" value="Delete" form="formDelete">
             </div>
         </form>
 
-        <form id="formDelete" style="display: inline;" action="{{route('users.destroy',[$user->id])}}" method="POST">
+        <form id="formDelete" style="display: inline;" action="{{route('admin.users.destroy',[$user->id])}}" method="POST">
             @method('DELETE')
             @csrf
         </form>

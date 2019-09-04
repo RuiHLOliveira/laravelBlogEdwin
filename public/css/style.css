@@ -102,6 +102,7 @@ header {
     background-color: var(--navBackgorund);
     color: var(--navText);
     font-size: 2em;
+    margin-bottom: 20px;
 }
 /* header end */
 
@@ -147,7 +148,19 @@ nav > span {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
+    border-bottom: 1px solid #00000055;
+    margin-bottom: 10px;
+}
+.pageTitle > h1 {
+    margin-bottom: 10px;
+}
+.topLinks {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+
+    margin-bottom: 30px;
 }
 /* end internal page styles */
 
@@ -171,6 +184,10 @@ table.tableCell td {
 }
 table.fullWidthTable {
     width: 100%;
+}
+
+.noCenterThead > thead > tr > th {
+    text-align: left;
 }
 /* tables end */
 

@@ -16,7 +16,7 @@
     </div>
 
     <div class="formContainer">
-        <form class="formFlex" action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="formFlex" action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <label class="formLabel bold" for="category_id">Category</label>
@@ -56,7 +56,11 @@
                 </div>
             @enderror
 
-            <input class="btn btnSuccess" type="submit" value="Create Post">
+
+            <div>
+                <a href="{{ route('admin.posts.index') }}" class="btn btnPrimary">Back</a>
+                <input class="btn btnSuccess" type="submit" value="Create Post">
+            </div>
         </form>
     </div>
 </div>

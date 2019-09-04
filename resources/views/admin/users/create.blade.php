@@ -16,7 +16,7 @@
 
     <div class="formContainer">
         {{-- users.store --}}
-        <form class="formFlex" enctype="multipart/form-data" method="POST" action="{{route('users.store')}}">
+        <form class="formFlex" enctype="multipart/form-data" method="POST" action="{{route('admin.users.store')}}">
             @csrf
 
             <label class="formLabel bold" for="name">name</label>
@@ -75,7 +75,10 @@
                 </div>
             @enderror
 
-            <input class="btn btnSuccess" type="submit" value="Create">
+            <div class="flexColInside" style="justify-content: left;">
+                <a class="flexGrow0 btn btnPrimary" href="{{ route('admin.users.index') }}">Back</a>
+                <input class="btn btnSuccess" type="submit" value="Create">
+            </div>
         </form>
     </div>
 </div>
