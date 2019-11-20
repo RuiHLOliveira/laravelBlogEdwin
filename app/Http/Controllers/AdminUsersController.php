@@ -125,7 +125,7 @@ class AdminUsersController extends Controller
             $validatedData['photo_id'] = $photo->id;
         }
         $result = $user->update($validatedData);
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -141,6 +141,6 @@ class AdminUsersController extends Controller
             unlink(public_path().'\\images\\'.$user->photo->file);
         }
         $user->delete();
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 }
