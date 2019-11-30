@@ -51,6 +51,10 @@
                 <a class="link" href="{{ route('admin.categories.index') }}">
                     <i class="fas fa-fw fa-address-card"></i> Categories
                 </a>
+
+                <a class="link" href="{{ route('admin.comments.index') }}">
+                    <i class="fas fa-fw fa-address-card"></i> Comments
+                </a>
                 {{-- <a class="link" href="{{ route('admin.categories.create') }}">Create Categoriy</a> --}}
             </nav>
             {{-- navbar end --}}
